@@ -1,0 +1,8 @@
+<div ng-controller="MainCtrl as main">
+  <div>
+    {{main.test}}
+  </div>
+  <div ng-repeat="post in main.posts | orderBy: '-upvotes'">
+    {{post.title}} - upvotes: {{post.upvotes}}
+  </div>
+</div>
