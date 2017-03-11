@@ -1,8 +1,35 @@
 <div ng-controller="MainCtrl as main">
-  <div>
-    {{main.test}}
-  </div>
-  <div ng-repeat="post in main.posts | orderBy: '-upvotes'">
-    {{post.title}} - upvotes: {{post.upvotes}}
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="page-header">
+        Flapper News
+      </div>
+
+      <div ng-repeat="post in main.posts | orderBy: '-upvotes'">
+        <span class="glyphicon glyphicon-thumbs-up" ng-click="main.incrementUpvotes(post)">
+        </span> {{post.upvotes}}
+        <span style="font-size:20px; margin-left:10px;">
+          <a ng-show="post.link" href="{{post.link}}">
+            {{post.title}}
+          </a>
+          <span ng-hide="post.link">
+            {{post.title}}
+          </span>
+        </span>
+      </div>
+
+      <form ng-submit="main.addPost()" style="margin-top:30px;">
+        <h3>Add a new post</h3>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Title" ng-model="main.title"></input>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Link" ng-model="main.link"></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
+
+    </div>
   </div>
 </div>
