@@ -8,8 +8,10 @@
  * Controller of the recipesAppApp
  */
 angular.module('recipesAppApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
+  .controller('AboutCtrl',
+  '$scope',
+  function ($scope) {
+    $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'

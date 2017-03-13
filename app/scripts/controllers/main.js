@@ -8,15 +8,18 @@
  * Controller of the recipesAppApp
  */
 angular.module('recipesAppApp')
-  .controller('MainCtrl', ['posts', function(posts) {
-    this.awesomeThings = [
+  .controller('MainCtrl', [
+    '$scope',
+    'posts',
+    function($scope, posts) {
+    $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    this.test = 'Hello world!';
-    this.posts = posts.posts;
-    this.posts = [
+    $scope.test = 'Hello world!';
+    $scope.posts = posts.posts;
+    $scope.posts = [
       {title: 'post1', upvotes: 5},
       {title: 'post2', upvotes: 10},
       {title: 'post3', upvotes: 77},
@@ -25,19 +28,24 @@ angular.module('recipesAppApp')
       {title: 'post6', upvotes: 44}
     ];
 
-    this.addPost = function() {
-      if(!this.title || this.title == '') {
+    $scope.addPost = function() {
+      if(!$scope.title || $scope.title === '') {
         return;
       }
-      this.posts.push({title: this.title,
-        link: this.link,
-        upvotes: 0});
-      this.title = '';
-      this.link = '';
-    }
+      $scope.posts.push({title: $scope.title,
+          link: $scope.link,
+          upvotes: 0,
+          comments:[
+              {author: 'James', body: 'Cool post!', upvotes: 0},
+              {author: 'Franco', body: 'Meh post :(', upvotes: 2}
+          ]
+      });
+      $scope.title = '';
+      $scope.link = '';
+    };
 
-    this.incrementUpvotes = function(post ) {
+    $scope.incrementUpvotes = function(post) {
       post.upvotes = post.upvotes + 1;
-    }
+    };
 
   }]);
